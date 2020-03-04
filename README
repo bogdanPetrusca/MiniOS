@@ -1,0 +1,28 @@
+PETRUSCA BOGDAN-MIHAI
+313CB
+In main fac citirea linie cu linie din fisier.
+Nu are rost sa explic linie cu linie ce face fiecare functie deoarece consider ca unele sunt usor de inteles.
+
+Pentru a-mi fi mai usor cu implementarea am creat o coada in care retin doar un proces cand este in starea running.
+
+Ideea din spatele functiei "add" este urmatoarea: aflu minimul dintre cuanta data, run_time si timpul de executie 
+al procesului si scad aceasta valoare din timpul de executie si cuanta fiecarui proces. In cazul in care timpul
+de executie este 0 atunci il adaug in coada de terminate, ii eliberez valabilitatea pidului si eliberez spatiul 
+din lista de memorie punand valoarea -1 in celula acestuia. Extrag un nou proces din coada de waiting
+si dupa aceea il adaug in running. In cazul in care nu i s-a terminat timpul de executie insa i s-a sfarsit 
+cuanta atunci aceste este introdus inapoi in coada de waiting si este extras un nou proces care trece in running.
+In cazul in care nu i s-a terminat niciuna dintre aceste 2 valori atunci cesta introdus inapoi in running
+
+Cu ajutorul functiei "AddInMem" adaug un proces in memorie. Spatiile libere sunt cele care au meme_size-ul = -1.
+Ideea este ca parcurg lista, iar in cazul in care se gaseste loc in interiorul liste atunci adaug procesul acolo. In
+caz contrar il adaug la sfarsit.
+
+Functia "defragmentare" elimina spatiile goale din lista de memorie. Parcurg lista, iar in cazul in care s-a gasit
+un spatiu liber, modific legaturile, iar dupa aceea parcurg restul listei pentru a modifica adresele celorlalte
+celule.
+
+Functia "ElimDuble" cauta celule consecutive in care mem_size-ul acestora este egal cu -1 adica daca sunt spatii goale.
+Dupa aceea le elimina si se modifica adresa de final a primei celule de spatiu gol in adresa de final a
+ultimului spatiu gol dinaintea unui spatiu ocupat.
+
+Va rog sa imi testati tema local fara valgrind deoarece mi se opreste la testul 6 si nu imi afiseaza punctajul total.
